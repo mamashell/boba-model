@@ -15,12 +15,12 @@ controls.enableDamping = true; // enable damping
 
 const loader = new GLTFLoader();
 
-let shiba;
+let uno;
 loader.load(
     './uno_cards_3d.glb', // Replace with the path to your model
     function (gltf) {
-        shiba = gltf.scene;
-        scene.add(shiba);
+        uno = gltf.scene;
+        scene.add(uno);
     },
     undefined,
     function (error) {
@@ -29,6 +29,14 @@ loader.load(
 );
 
 camera.position.z = 3;
+
+const ambientLight = new THREE.AmbientLight(0xffffff); // white light
+scene.add(ambientLight);
+
+// Add directional light
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1); // White light at full intensity
+directionalLight.position.set(5, 5, 5).normalize(); // Position the light
+scene.add(directionalLight);
 
 function animate() {
     requestAnimationFrame(animate);
